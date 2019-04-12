@@ -3,9 +3,10 @@ import operator
 def person_lister(f):
     def inner(people):
         # complete the function
-        return map(f, sorted(people, key=lambda x: x[2]))          
-    return inner
+        for ps in sorted(people, key=lambda x: int(x[2])):
+            yield f(ps)
 
+    return inner
 @person_lister
 def name_format(person):
     return ("Mr. " if person[3] == "M" else "Ms. ") + person[0] + " " + person[1]
